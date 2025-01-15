@@ -1,17 +1,19 @@
 <template>
     <!-- 마우스가 헤더 부분을 벗어나면 드롭다운 메뉴가 사라짐 -->
-    <header v-on:mouseleave="dropDown.main = false, dropDown.home = false">
+    <header v-on:mouseleave="dropDown.list = false, dropDown.home = false">
         <!-- 메인메뉴 클릭, 기존 ul태그로 가도 무방 -->
         <div class="menuMenu">
             <!-- 마우스가 각 메뉴에 호버링 될 시 드롭다운 메뉴가 나타나도록 v-on 설정 -->
-            <a v-on:mouseover="overList">List</a>
-            <a v-on:mouseover="overHome">Home</a>
+            <a v-on:mouseover="overHome">홈</a>
+            <span class="line"></span>
+            <a v-on:mouseover="overList">게시판</a>
+            
         </div>
         <!-- 메뉴가 사라질 때 애니메이션 효과를 주기위한 태그 -->
          <!-- 드롭 다운 메뉴 -->
           <transition name="fade">
             <!-- 둘 중 하나라도 호버링 되어 dropDown이 True가 되면 드롭다운메뉴 보이기 -->
-             <div class="subMenu" v-if="dropDown.main || dropDown.home">
+             <div class="subMenu" v-if="dropDown.list || dropDown.home">
                 <table style="margin:auto;">
                     <!-- v-for문 사용하여 각 아이템별로 메뉴 생성 -->
                      <th v-for="item in subMenuItems" v-bind:key="item">
@@ -39,17 +41,17 @@ export default{
         overList(){
             //메인 메뉴 호버링 시 실행
             this.dropDown.list = true;
-            this.subMenuItems = ["1", "2", "3"]
+            this.subMenuItems = ["메뉴1", "메뉴2", "메뉴3"]
         },
 
         overHome(){
             //홈 메뉴 호버링 시 실행
             this.dropDown.home = true;
-            this.subMenuItems = ["a", "b", "c"]
+            this.subMenuItems = ["메뉴a", "메뉴b", "메뉴c"]
         },
         menuClick(item){
             //드롭다운 메뉴 클릭 시 실행
-            if(item == "1" || item == "2" || item == "3"){
+            if(item == "메뉴1" || item == "메뉴2" || item == "메뉴3"){
                 this.$router.push({
                     name: "List"
                 })
@@ -68,6 +70,8 @@ export default{
 header {
     width:100%;
     text-align:center;
+    font-size: 30px;
+    font-weight: bold;
     position:relative;
     height:120px;
     border-bottom:1px solid #35495e;
@@ -80,19 +84,25 @@ header {
     color:darkblue;
     background: blanchedalmond;
 }
+.line{
+    width: 10px;
+    padding-left: 2px;
+    margin: 5%;
+    background-color:dimgray;
+}
 .subMenu {
-    height: 80%;
-    background: blanchedalmond;
+    height: 50%;
+    margin-top: 10px;
+    background:floralwhite;
     display: flex;
 }
 .subMenu tr {
-    font-size: 30px;
+    font-size: 15px;
 }
 .subMenu tr:hover {
     color: white;
     background: black;
 }
-
 
 .fade-enter-active, .fade-leave-active{
     transition: opacity 0.5s;
