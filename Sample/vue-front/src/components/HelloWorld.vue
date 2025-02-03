@@ -84,11 +84,21 @@
 </template>
 
 <script>
+import RegistBoard from './Regist-board.vue';
+
 export default {
   name: 'HelloWorld',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  components: {
+    RegistBoard
+  },
+  methods: {
+    openRegistPopup(){
+      this.$refs.registPopup.openPopup = true;
     }
   }
 }

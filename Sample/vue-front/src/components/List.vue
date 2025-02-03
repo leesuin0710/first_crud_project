@@ -1,6 +1,7 @@
 <!-- List.vue -->
 <template>
     <div class="Body">
+        <h1>기본 게시판</h1>
         <RegistBoard @refresh="GETData"/>
         <div class="board-div">
                 <el-table border :data="Items" @row-click="clickRow" v-if="Items.length>0">

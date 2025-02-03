@@ -1,34 +1,30 @@
 <template>
   <div id="app">
-    <HeaderComponent /> <!-- 헤더 컴포넌트-->
-    <h1>기본 게시판</h1>
-    <el-button class="write-button" @click="openRegistPopup()">글쓰기</el-button>
-    <regist-board @refresh="reload" ref="registPopup"></regist-board>
+    <Header /> <!-- 헤더 컴포넌트-->
     <router-view/>
+    <Footer/>
   </div>
 </template>
 
 <script>
-import HeaderComponent from "./components/HeaderComponent.vue";
+import Footer from "./common/Footer.vue";
+import Header from "./common/Header.vue";
 import HelloWorld from './components/HelloWorld.vue'
 import List from './components/List.vue';
 import RegistBoard from "./components/Regist-board.vue";
+import Write from "./components/Write.vue";
 
 export default {
   name: 'App',
   components: {
-    HeaderComponent,
+    Header,
+    Footer,
     HelloWorld,
+    Write,
     List,
     RegistBoard
   },
   methods:{
-    reload() {
-        window.location.reload();
-        },
-    openRegistPopup(){
-      this.$refs.registPopup.openPopup = true;
-    }
   }
 }
 </script>
@@ -42,8 +38,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-.write-button{
-  margin-right: 92%;
 }
 </style>
