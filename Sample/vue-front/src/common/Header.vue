@@ -14,13 +14,12 @@
           <transition name="fade">
             <!-- 둘 중 하나라도 호버링 되어 dropDown이 True가 되면 드롭다운메뉴 보이기 -->
              <div class="subMenu" v-if="dropDown.list || dropDown.home">
-                <table style="margin:auto;">
+                <div class="menuItems">
                     <!-- v-for문 사용하여 각 아이템별로 메뉴 생성 -->
-                     <th v-for="item in subMenuItems" v-bind:key="item">
-                        <!-- onClick에 파라미터 넘겨주기 -->
-                         <tr class="menuItem" v-on:click="menuClick(item)">{{ item }}</tr>
-                     </th>
-                </table>
+                     <div v-for="item in subMenuItems" :key="item" class="menuItem" @click="menuClick(item)">
+                        {{item}}
+                     </div>
+                    </div>
              </div>
           </transition>
     </header>
@@ -41,13 +40,13 @@ export default{
         overList(){
             //메인 메뉴 호버링 시 실행
             this.dropDown.list = true;
-            this.subMenuItems = ["글 등록", "메뉴1", "메뉴2", "메뉴3"]
+            this.subMenuItems = ["글 등록", "게시판 목록"]
         },
 
         overHome(){
             //홈 메뉴 호버링 시 실행
             this.dropDown.home = true;
-            this.subMenuItems = ["about", "메뉴b", "메뉴c"]
+            this.subMenuItems = ["소개", "임시 메뉴"]
         },
         menuClick(item){
             //드롭다운 메뉴 클릭 시 실행
@@ -56,7 +55,7 @@ export default{
                     name: "Write"
                 })
             }
-            else if (item == "메뉴1" || item == "메뉴2" || item == "메뉴3"){
+            else if (item == "게시판 목록" || item == "임시 메뉴"){
                 this.$router.push({
                     name: "List"
                 })
@@ -81,34 +80,42 @@ header {
     top: 0;
     z-index: 1000;
     height:120px;
+    background-color: #35495e;
+    color: white;
     border-bottom:1px solid #35495e;
     margin-bottom: 10px;
 }
 .mainMenu {
     height: 20%;
 }
-.mainMenu a:hover { 
-    color:darkblue;
-    background: blanchedalmond;
-}
 .line{
     width: 10px;
     padding-left: 2px;
     margin: 5%;
-    background-color:dimgray;
+    background-color:white;
 }
 .subMenu {
+    width: 100%;
     height: 50%;
-    margin-top: 10px;
-    background:floralwhite;
+    background:#445d78;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
 }
-.subMenu tr {
+.menuItems{
+    display: flex;
+    gap: 20px;
+}
+.menuItem {
     font-size: 15px;
+    width: fit-content;
+    padding: 10px 20px;
+    cursor: pointer;
 }
-.subMenu tr:hover {
+.menuItem:hover {
     color: white;
-    background: black;
+    background: #35495e;
 }
 
 .fade-enter-active, .fade-leave-active{
@@ -117,7 +124,6 @@ header {
 .fade-enter, .fade-leave-to {
     opacity: 0;
 }
-
 
 
 </style>

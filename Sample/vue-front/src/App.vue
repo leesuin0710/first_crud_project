@@ -11,7 +11,7 @@ import Footer from "./common/Footer.vue";
 import Header from "./common/Header.vue";
 import HelloWorld from './components/HelloWorld.vue'
 import List from './components/List.vue';
-import RegistBoard from "./components/Regist-board.vue";
+import Popup from "./components/Popup.vue";
 import Write from "./components/Write.vue";
 
 export default {
@@ -22,7 +22,7 @@ export default {
     HelloWorld,
     Write,
     List,
-    RegistBoard
+    Popup
   },
   methods:{
   }
@@ -31,7 +31,6 @@ export default {
 
 <style>
 #app {
-  width: 95%;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

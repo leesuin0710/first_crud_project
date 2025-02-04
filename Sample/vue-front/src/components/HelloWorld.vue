@@ -84,28 +84,29 @@
 </template>
 
 <script>
-import RegistBoard from './Regist-board.vue';
 
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      title: '',
+      content: '',
     }
   },
   components: {
-    RegistBoard
   },
   methods: {
-    openRegistPopup(){
-      this.$refs.registPopup.openPopup = true;
-    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.hello{
+  height: 300px;
+  padding: 20px 0;
+}
 h1, h2 {
   font-weight: normal;
 }

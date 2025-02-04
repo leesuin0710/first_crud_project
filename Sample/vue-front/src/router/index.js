@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import List from '../components/List.vue'
-import RegistBoard from '../components/Regist-board.vue'
+import Popup from '../components/Popup.vue'
 import Write from '../components/Write.vue'
 
 Vue.use(Router)
@@ -32,7 +32,7 @@ export default new Router({
     {
       path: '/regist',
       name: 'Regist',
-      component: RegistBoard
+      component: Popup
     }
   ]
 })

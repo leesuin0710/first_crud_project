@@ -9,16 +9,16 @@
                 <el-button type="primary" @click="clickEditButton()">수정</el-button>
             </el-row>
         </el-dialog>
-        <regist-board @reload="reload" ref="registPopup"></regist-board>
+        <Popup @reload="reload" ref="registPopup"></Popup>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
-import RegistBoard from './Regist-board.vue';
+import Popup from './Popup.vue';
 
 export default {
-    components: {RegistBoard},
+    components: {Popup},
     data(){
         return{
             openDetail: false,

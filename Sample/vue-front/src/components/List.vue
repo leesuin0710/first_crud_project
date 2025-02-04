@@ -2,7 +2,9 @@
 <template>
     <div class="Body">
         <h1>기본 게시판</h1>
-        <RegistBoard @refresh="GETData"/>
+        <div class="write-button-div">
+            <el-button class="write-button" @click="goToWritePage">글쓰기</el-button>
+        </div>
         <div class="board-div">
                 <el-table border :data="Items" @row-click="clickRow" v-if="Items.length>0">
                     <el-table-column prop="bno" label="글번호"></el-table-column>
@@ -18,37 +20,31 @@
                 <div v-else>
                     <p>등록된 게시글이 없습니다.</p>
                 </div>
-                <board-detail ref="detailPopup" @reload="GETData()"></board-detail>
+                <BoardDetail ref="detailPopup" @reload="GETData()"></BoardDetail>
         </div>
     </div>
 </template>
 
 <script>
 import axios from 'axios' //axios 사용을 위해 import
-import RegistBoard from './Regist-board.vue';
+import Popup from './Popup.vue';
 import BoardDetail from './BoardDetail.vue';
 
 export default {
     //변수 선언
     data(){
         return{
+            pop: false,
             Items:[],
             boardDetail: [],
             openDetail: false,
         };
     },
-    props:{
-        msg: String,
-    },
     created(){
         this.GETData();
-        // axios.get("http://localhost:8081/test").then((result) => { //"/test"에 get 요청을 보낸 후 돌아온 결과값으로 아래 실행
-        //         console.log('test')
-        //         this.Items = result.data; //변수 items에 결과값 넣어줌
-        // })
     },
     components:{
-        RegistBoard,
+        Popup,
         BoardDetail
     },
 
@@ -59,10 +55,6 @@ export default {
                 console.log(result.data);
                 this.Items = result.data; //변수 items에 결과값 넣어줌
             })
-
-            // this.$router.push({
-            //     name: "Board"
-            // })
         },
         clickRow(row){
             this.$refs.detailPopup.getBoardDetail(row);
@@ -82,7 +74,14 @@ export default {
                 .catch((error) => {
                     console.error('게시글 삭제 오류', error);
                 });
-        }
+        },
+        changeRegistPopup(){
+            this.pop = !this.pop;
+            console.log('Popup 상태: ', this.pop);
+        },
+        goToWritePage() {
+            this.$router.push({ name: 'Write' });
+        },
         // getBoardDetail(row) {
         //     axios.get(`http://localhost:8081/test/${row.bno}`).then((response) => {
         //         this.boardDetail = response.data; // 상세정보를 받아서 boardDetail에 저장
@@ -115,5 +114,8 @@ export default {
 .board-button{
     margin-left: 95%;
     margin-top: 4%;
+}
+.write-button-div{
+    text-align: end;
 }
 </style>
