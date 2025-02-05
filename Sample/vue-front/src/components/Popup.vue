@@ -59,7 +59,7 @@
       if (!this.editMode){
         this.isLoading = true;
       axios
-        .post('http://localhost:8081/test', this.setParams)
+        .put('http://localhost:8081/test', this.setParams)
         .then((response) => {
           this.isLoading = false;
           if (response.data.status === 'success') {  // 실제 응답에 맞게 수정
@@ -91,7 +91,7 @@
       else{
         this.isLoading = true;
       axios
-        .put('http://localhost:8081/test', this.setParams)
+        .post('http://localhost:8081/test', this.setParams)
         .then((response) => {
           this.isLoading = false;
           if (response.data.status === 'success') {  // 실제 응답에 맞게 수정
