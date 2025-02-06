@@ -36,7 +36,7 @@
         editMode: false,
         title: '',
         content: '',
-        writer: '익명',
+        writer: '',
         isLoading: false,
       };
     },
@@ -56,10 +56,10 @@
     },
     methods: {
       Popup() {
-      if (!this.editMode){
+      if (this.editMode){
         this.isLoading = true;
       axios
-        .put('http://localhost:8081/test', this.setParams)
+        .put(`http://localhost:8081/test/${this.bno}`, this.setParams)
         .then((response) => {
           this.isLoading = false;
           if (response.data.status === 'success') {  // 실제 응답에 맞게 수정
@@ -67,6 +67,7 @@
             this.openPopup = false; // 팝업 닫기
             this.title = ''; // 입력 필드 초기화
             this.content = ''; // 입력 필드 초기화
+            this.writer = this.writer;
             this.$emit('refresh');
           } else {
             this.isLoading = false;
@@ -74,8 +75,8 @@
             this.openPopup = false; // 팝업 닫기
             this.title = ''; // 입력 필드 초기화
             this.content = ''; // 입력 필드 초기화
+            this.writer = '';
             this.$emit('refresh');
-            window.location.reload();
           }
         })
         .catch((error) => {
@@ -84,8 +85,8 @@
           this.openPopup = false; // 팝업 닫기
             this.title = ''; // 입력 필드 초기화
             this.content = ''; // 입력 필드 초기화
+            this.writer = '';
             this.$emit('refresh');
-            window.location.reload();
         });
       }
       else{
@@ -99,16 +100,16 @@
             this.openPopup = false; // 팝업 닫기
             this.title = ''; // 입력 필드 초기화
             this.content = ''; // 입력 필드 초기화
+            this.writer = '';
             this.$emit('refresh');
-            window.location.reload();
           } else {
             this.isLoading = false;
             console.log('게시글 등록 실패', response.data);
             this.openPopup = false; // 팝업 닫기
             this.title = ''; // 입력 필드 초기화
             this.content = ''; // 입력 필드 초기화
+            this.writer = '';
             this.$emit('refresh');
-            window.location.reload();
           }
         })
         .catch((error) => {
@@ -117,8 +118,8 @@
           this.openPopup = false; // 팝업 닫기
             this.title = ''; // 입력 필드 초기화
             this.content = ''; // 입력 필드 초기화
+            this.writer = '';
             this.$emit('refresh');
-            window.location.reload();
         });
       }
     },

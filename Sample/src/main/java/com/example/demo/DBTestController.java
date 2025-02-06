@@ -49,7 +49,7 @@ public class DBTestController {
 		return deptDao.getBoardDetail(bno);
 	}
 	
-	@PutMapping("/test")
+	@PutMapping("/test/{bno}")
     public Map<String, Object> updateBoard(@RequestBody Dept dept) {
         Map<String, Object> response = new HashMap<>();
         try {

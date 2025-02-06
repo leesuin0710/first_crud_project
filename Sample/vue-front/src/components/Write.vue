@@ -5,7 +5,11 @@
         </div>
 
         <div class="write-board">
-          <el-input placeholder="제목을 입력해 주세요" v-model="title"></el-input>
+          <span>
+            <el-input placeholder="작성자를 입력해 주세요" v-model="writer"></el-input>
+            <el-input placeholder="제목을 입력해 주세요" v-model="title"></el-input>
+          </span>
+          
             <el-input
               style="margin-top:30px;"
               type="textarea"
@@ -67,6 +71,7 @@ export default {
             this.openPopup = false; // 팝업 닫기
             this.title = ''; // 입력 필드 초기화
             this.content = ''; // 입력 필드 초기화
+            this.writer = '';
             this.$emit('refresh');
           } else {
             this.isLoading = false;
@@ -74,6 +79,7 @@ export default {
             this.openPopup = false; // 팝업 닫기
             this.title = ''; // 입력 필드 초기화
             this.content = ''; // 입력 필드 초기화
+            this.writer = '';
             this.$emit('refresh');
           }
         })
@@ -83,6 +89,7 @@ export default {
           this.openPopup = false; // 팝업 닫기
             this.title = ''; // 입력 필드 초기화
             this.content = ''; // 입력 필드 초기화
+            this.writer = '';
             this.$emit('refresh');
         });
     },

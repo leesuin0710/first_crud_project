@@ -9,7 +9,7 @@
                 <el-button type="primary" @click="clickEditButton()">수정</el-button>
             </el-row>
         </el-dialog>
-        <Popup @reload="reload" ref="registPopup"></Popup>
+        <Popup @refresh="refresh" ref="registPopup"></Popup>
     </div>
 </template>
 
@@ -31,6 +31,7 @@ export default {
                 bno: this.bno,
                 title: this.title,
                 content: this.content,
+                writer: this.writer
             };
             return params;
         },
@@ -53,11 +54,12 @@ export default {
             this.$refs.registPopup.bno = this.boardDetail.bno;
             this.$refs.registPopup.title = this.boardDetail.title;
             this.$refs.registPopup.content = this.boardDetail.content;
+            this.$refs.registPopup.writer = this.boardDetail.writer;
             this.$refs.registPopup.editMode = true;
             this.$refs.registPopup.openPopup = true;
         },
-        reload() {
-            this.$emit('reload');
+        refresh() {
+            this.$emit('refresh');
             window.location.reload();
         }
     },
